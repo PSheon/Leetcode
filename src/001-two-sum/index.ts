@@ -10,15 +10,21 @@
  * @return {number[]}
  */
 function twoSum(numbers: number[], target: number): number[] {
+  const map = {};
+  let output = [];
+
   for (let i = 0; i < numbers.length; i++) {
-    for (let j = 1 + i; j < numbers.length; j++) {
-      if (numbers[i] + numbers[j] === target) {
-        return [i, j];
-      }
+    const number = numbers[i];
+
+    if (map[target - number] >= 0) {
+      output = [map[target - number], i];
+      break;
+    } else {
+      map[number] = i;
     }
   }
 
-  return [];
+  return output;
 }
 
 export default twoSum;
